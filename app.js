@@ -10,7 +10,7 @@ app.use(compression());
 
 //app.set('port', (process.env.PORT || 5500));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5500;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -20,10 +20,10 @@ app.set('views', './views');
  
     var mysql      = require('mysql');
     var con = mysql.createConnection({
-      host     : '89.163.146.147',
-      user     : 'yilsoft_kutup',
+      host     : '213.238.183.10',   //'89.163.146.147',
+      user     : 'httpkype_httpkype',
       password : 'of.616161',
-      database : 'yilsoft_kutup'
+      database : 'httpkype_kutup'
     });
 /*
 function baglan() {
