@@ -50,10 +50,9 @@ app.get("/", function (req, res) {
     })
 })
 
-
 /*
 app.get('/', (req, res) => {
-    res.send('Haydi Bismillah !')
+    res.send('Haydi Bismillah!')
 })
 
  app.listen(port, () => {
