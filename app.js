@@ -12,38 +12,36 @@ app.use(compression());
 
 const PORT = process.env.PORT || 3000;
 
-
-
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.set('views', './views');
-
-
-
+ 
+    var mysql      = require('mysql');
+    var con = mysql.createConnection({
+      host     : '89.163.146.147',
+      user     : 'yilsoft_kutup',
+      password : 'of.616161',
+      database : 'yilsoft_kutup'
+    });
+/*
 function baglan() {
-    con = mysql.createConnection({
-
+       con = mysql.createConnection({
        // host: ENV['89.163.146.147'],
         host: "89.163.146.147",
-
         user: "yilsoft_kutup",
-
         // password: ENV['of.616161'],
         password: "of.616161",   
-
         //database: ENV['yilsoft_kutup'],
         database: "yilsoft_kutup",  
-
     });
 } // bağlantı END
-
+*/
 
 app.get("/", function (req, res) {
 
-    baglan();
+   // baglan();
     var sql = 'SELECT * FROM ogrenciler WHERE ogrencilerid < 20';
 
     con.query(sql, function (err, results) {
