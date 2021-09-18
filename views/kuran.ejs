@@ -1,0 +1,114 @@
+    <style>
+        mark {
+            padding: 0px;
+            background-color: yellow;
+        }
+    </style>
+
+    <center>
+        <h1>KUR'AN-I KERİM</h1>
+    </center>
+    <br>
+    <div class="container">
+        <div class="col-sm-12">
+            <table id="myTable" class="table table-bordered table-hover table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Sıra</th>
+                        <th>Ayet</th>
+                        <th>Sure</th>
+                        <th>Ayet Metni</th>
+                        <th>Ayet Manası</th>
+                        <th> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var tTable;
+        $(document).ready(function () {
+            tTable = $("#myTable").DataTable({
+                dom: 'Blfrtip',
+                buttons: ['copy', 'excel', 'pdf', 'print'],
+                "paging": true,
+                "pageLength": 10,
+                "responsive": true,
+                "autoWidth": true,
+                "order": [
+                    [0, "asc"]
+                ],
+                "ajax": {
+                    "url": '/kuranyukle',
+                    "type": "GET",
+                    "datatype": "json",
+                    "dataSrc": "",
+                },
+                "columnDefs": [{
+                    responsivePriority: 10001,
+                    targets: 0
+                }],
+                columns: [{
+                        "data": "id"
+                    },
+                    {
+                        "data": "AyetNo"
+                    },
+                    {
+                        "data": "SureNo"
+                    },
+                    {
+                        "data": "Metin",
+                        "autoWidth": true,
+                        className: "text-right",
+                        'render': function (data) {
+                            return '<span style="font-size: 26px; font-family: Calibri;">' +
+                                data + '</span>';
+                        }
+                    },
+                    {
+                        "data": "Mana",
+                        "autoWidth": true,
+                        'render': function (data) {
+                            return '<span style="font-size: 16px;">' + data + '</span>';
+                        }
+                    },
+                    {
+                        "data": "id",
+                        "render": function (data) {
+                            //var btnDetay = "<a class='btn btn-info btn-sm text-white' onclick=showInPopup('Details/" + data + "','İNCELEME')><i class='fa fa-address-card-o'></i>&nbsp;</a>";
+                            var btnDetay =
+                                "<a class='btn btn-info btn-sm text-white' onclick=bil('" +
+                                data +
+                                "')><i class='fa fa-address-card-o'></i>&nbsp;</a>";
+                            return btnDetay;
+                        },
+                    }
+                ],
+                select: true,
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+                }
+            });
+
+            // add custom listener to draw event on the table
+            tTable.on("draw", function () {
+                // get the search keyword
+                var keyword = $('#myTable_filter > label:eq(0) > input').val();
+
+                // clear all the previous highlighting
+                $('#myTable').unmark();
+
+                // highlight the searched word
+                $('#myTable').mark(keyword, {});
+            });
+        }); // END document ready
+        ///////////////////////    
+    </script>
+    
+      <script>
+        document.getElementById('cikis').style.visibility = 'visible';
+      </script>

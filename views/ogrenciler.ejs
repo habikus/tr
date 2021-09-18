@@ -1,0 +1,528 @@
+<style>
+    * {
+        box-sizing: border-box;
+        /*PADDİNG VE BORDER İÇTEN YER */
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+    .labeltr {
+        font-weight: 600;
+        font-size: 16px;
+        color: rgb(20, 55, 95);
+    }
+
+    .orta {
+        margin: auto;
+    }
+</style>
+<!-- Modal Popup LİSTELE Start -->
+<div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+    id="form-modal-listele">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content" style="padding:0px; background-color: rgb(216, 207, 123);">
+                <div class="modal-header text-white">
+                    <h5 class="modal-title" id="modal-baslik-izle">L İ S T E L E</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"
+                    style="margin: 0px 1px 0px 1px; padding: 5px 20px 5px 20px; ">
+                    <!-- <table id="myListe" class="display" style="width:100%"> -->
+                    <table id="myListe" class="display table table-bordered table-hover table-striped dataTable w-100">
+
+                        <thead style="background-color: rgb(82, 156, 156);color: white;">
+                            <tr>
+                                <th>No</th>
+                                <th>Tarih</th>
+                                <th>Kitap Adı</th>
+                                <th>Öğrenci Adı</th>
+                                <th>Açıklama</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div> 
+</div>
+<!-- Modal Popup LİSTELE End -->
+
+<div class="container">
+    <div class="row" style="border: darkolivegreen 2px solid;     box-shadow: 0 2px 8px 2px rgb(68, 45, 45);">
+        <div class="col-4" style="background-color: rgb(221, 217, 160); margin-left: 0px;padding:20px;">
+            <h2 style="margin-bottom: 15px;">AYRINTILI ÖĞRENCİ BİLGİLERİ</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">ÖGRENCİ ID</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="id" class="form-control" value="" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">ÖĞRENCİ NO</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="ogrencino" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">ÖĞRENCİ ADI</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="ogrenciadi" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">SINIF-ŞUBE</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="sinifi" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">ADRES</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="adres" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">TELEFON</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="telefon" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">e-Mail</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="email" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">AÇIKLAMA</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="aciklama" class="form-control" value="" required>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-4 p-1 orta">
+                    <button style="width: 100%;" onclick="yeni()" class="btn btn-primary"><i
+                            class="far fa-file-alt"></i>YENİ</button>
+                </div>
+                <div class="col-4  p-1 orta">
+                    <button style="width: 100%;" onclick="kaydetsen()" class="btn btn-success"><i
+                            class="far fa-save"></i>KAYDET</button>
+                </div>
+                <div class="col-4 p-1 orta">
+                    <button style="width: 100%;" onclick="silersen()" class="btn btn-danger"> <i
+                            class="far fa-trash-alt"></i>SİL</button>
+                </div>
+            </div>
+            <div class="row">
+
+                <button style="width: 100%;" onclick="listelersen()" class="btn btn-danger">
+                    <i class="far fa-list-alt"></i> OKUDUĞU KİTAPLAR</button>
+
+            </div>
+
+        </div>
+        <div class="col-8" style="background-color: aliceblue; padding:20px;">
+            <h1>ÖĞRENCİ LİSTESİ</h1>
+            <hr>
+            <table id="myTable" class="tablem table table-bordered table-hover table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Öğrenci No</th>
+                        <th>Öğrenci Adı</th>
+                        <th>Sınıfı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var tTable; 
+    var iTable;
+    var mTable;
+    var araword;
+    var kId,kAd;
+    $(document).ready(function () {
+        kId = 0;
+        temizle();
+        mTable = $("#myTable").DataTable({
+            "paging": true,
+            "pageLength": 7,
+            "responsive": true,
+            "autoWidth": false,
+            //  "processing": true,
+            "order": [
+                [0, "asc"]
+            ],
+            "ajax": {
+                "url": '/ogrenciyukle',
+                "type": "GET",
+                "datatype": "json",
+                "dataSrc": "",
+            },
+            columns: [{
+                    "data": "ogrencilerid"
+                }, {
+                    "data": "ogrencino"
+                },
+                {
+                    "data": "ogrenciadi"
+                },
+                {
+                    "data": "sinifi"
+                }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+            }
+        });
+    });
+
+    function yeni() {
+        temizle();
+    }
+
+    function arasen() {
+        araword = document.getElementById("aratext").value;
+        temizle();
+        ara(araword);
+    }
+
+    function ara(araword) {
+        $.ajax({
+            type: 'POST',
+            url: "./getirogrenci",
+            data: {
+                kelime: araword
+            },
+            success: function (data) {
+                if (data[0].durum == "yoktur") {
+                    temizle();
+                    //   document.getElementById("sonuc").innerHTML = "ARADIĞINIZ KAYIT BULUNAMAMIŞTIR";
+                    //   $("#tablo").hide();
+                } else {
+                    kId = data[0].ogrencilerid;
+                    document.getElementById("id").value = data[0].ogrencilerid;
+                    document.getElementById("ogrencino").value = data[0].ogrencino;
+                    document.getElementById("ogrenciadi").value = data[0].ogrenciadi;
+                    kAd =  data[0].ogrenciadi;
+                    document.getElementById("sinifi").value = data[0].sinifi;
+                    document.getElementById("aciklama").value = data[0].aciklama;
+                    document.getElementById("adres").value = data[0].adres;
+                    document.getElementById("telefon").value = data[0].telefon;
+                    document.getElementById("email").value = data[0].email;
+                }
+            },
+        });
+    }
+
+    function suzsen(url, title) {
+
+        if ($.fn.DataTable.isDataTable("#ekTable")) {
+            $('#ekTable').DataTable().clear().destroy();
+        }
+
+        var araword = document.getElementById("aratext").value;
+        var n = araword.length;
+        if (n < 3) {
+            alert("En az 3 karakter girmelisiniz!");
+            return;
+        };
+        $.ajax({
+            type: 'POST',
+            url: "./suzogrenci",
+            data: {
+                kelime: araword
+            },
+            success: function (data) {
+                document.getElementById("id").value = data[0].ogrencilerid;
+                document.getElementById("ogrencino").value = data[0].ogrencino;
+                document.getElementById("ogrenciadi").value = data[0].ogrenciadi;
+                document.getElementById("sinifi").value = data[0].sinifi;
+                document.getElementById("aciklama").value = data[0].aciklama;
+                document.getElementById("adres").value = data[0].adres;
+                document.getElementById("telefon").value = data[0].telefon;
+                document.getElementById("email").value = data[0].email;
+
+                // Diğerlerini göster
+                $("#tablo").show();
+                $("#ekTable tbody").html("");
+                document.getElementById("sonuc").innerHTML = "";
+                var satir = "";
+                var i = 0;
+                for (i = 0; i < data.length; i++) {
+                    var nosu = data[i].ogrencino;
+                    var adi = data[i].ogrenciadi;
+                    var sinifi = data[i].sinifi;
+                    var aciklama = data[i].aciklama;
+                    var t = i + 1;
+                    satir = "<tr>";
+                    satir += "<td>" + t + "</td>";
+                    satir += "<td>" + nosu + "</td>";
+                    satir += "<td>" + adi + "</td>";
+                    satir += "<td>" + sinifi + "</td>";
+                    satir += "<td>" + aciklama + "</td>";
+                    satir += "</tr>";
+                    $("#ekTable").append(satir);
+                }
+
+                tTable = $("#ekTable").DataTable({
+                    "autoWidth": false,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+                    }
+                });
+                //
+                $('#ekTable tbody').on('click', 'tr', function () {
+                    var data = tTable.row(this).data();
+                    // TIKLANAN KAYDI GETİR
+                    araword = data[2];
+                    ara(araword);
+                    // TIKLANAN KAYDI GETİR  
+                });
+                ///  
+            }
+        })
+    }
+
+    function silersen(url, title) {
+
+        if (document.getElementById("ogrencino").value == "" || document.getElementById("ogrenciadi").value == "") {
+            alert("Silinecek kaydı seçmelisiniz!");
+            return false;
+        }
+
+        var agree = confirm("BU KAYDI SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?\nBu işlem geri alınamaz!");
+        if (agree) {
+            //  DEVAM
+        } else {
+            return false;
+        }
+
+        //var idtext = document.getElementById("id").value;
+        var idtext = kId;
+        $.ajax({
+            type: 'POST',
+            url: "./silogrenci",
+            data: {
+                idtxt: idtext
+            },
+            success: function (data) {
+
+                $.notify('Kayıt Silindi', {
+                    globalPosition: 'top right',
+                    className: 'danger'
+                });
+                $('#myTable').DataTable().ajax.reload();
+                temizle();
+            }
+        })
+    }
+
+    function temizle() {
+        kId = 0;
+        document.getElementById("id").value = "";
+        document.getElementById("ogrencino").value = "";
+        document.getElementById("ogrenciadi").value = "";
+        document.getElementById("sinifi").value = "";
+        document.getElementById("aciklama").value = "";
+        document.getElementById("adres").value = "";
+        document.getElementById("telefon").value = "";
+        document.getElementById("email").value = "";
+    }
+
+    function kaydetsen(url, title) {
+
+        if (document.getElementById("ogrencino").value == "" || document.getElementById("ogrenciadi").value == "") {
+            alert("Öğrenci nosu veya öğrenci adı alanları boş geçilemez!");
+            return false;
+        }
+        var agree = confirm("KAYDETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?");
+        if (agree) {
+            //  DEVAM
+        } else {
+            return false;
+        }
+        var idtext = kId;
+        var nosutext = document.getElementById("ogrencino").value;
+        var ogrenciaditext = document.getElementById("ogrenciadi").value;
+        var sinifitext = document.getElementById("sinifi").value;
+        var aciklamatext = document.getElementById("aciklama").value;
+        var adrestext = document.getElementById("adres").value;
+        var telefontext = document.getElementById("telefon").value;
+        var emailtext = document.getElementById("email").value;
+        // var ozettext = document.getElementById("ozet").value;  
+        $.ajax({
+            type: 'POST',
+            url: "./kaydetogrenci",
+            data: {
+                idtxt: idtext,
+                nosutxt: nosutext,
+                ogrenciaditxt: ogrenciaditext,
+                sinifitxt: sinifitext,
+                aciklamatxt: aciklamatext,
+                adrestxt: adrestext,
+                telefontxt: telefontext,
+                emailtxt: emailtext
+            },
+            success: function (data) {
+
+                $.notify('Kayıt Edildi', {
+                    globalPosition: 'top right',
+                    className: 'success'
+                });
+                $('#myTable').DataTable().ajax.reload();
+            }
+
+        })
+    }
+
+    function guncellesen(url, title) {
+        var idtext = document.getElementById("id").value;
+        var nosutext = document.getElementById("ogrencino").value;
+        var ogrenciaditext = document.getElementById("ogrenciadi").value;
+        var sinifitext = document.getElementById("sinifi").value;
+        var aciklamatext = document.getElementById("aciklama").value;
+        var adrestext = document.getElementById("adres").value;
+        var telefontext = document.getElementById("telefon").value;
+        var emailtext = document.getElementById("email").value;
+        $.ajax({
+            type: 'POST',
+            url: "./guncelleogrenci",
+            data: {
+                idtxt: idtext,
+                nosutxt: nosutext,
+                ogrenciaditxt: ogrenciaditext,
+                sinifitxt: sinifitext,
+                aciklamatxt: aciklamatext,
+                adrestxt: adrestext,
+                telefontxt: telefontext,
+                emailtxt: emailtext
+            },
+            success: function (data) {
+
+                $.notify('Kayıt Güncellendi', {
+                    globalPosition: 'top right',
+                    className: 'success'
+                });               
+            }
+        })
+    }
+
+    function listelersen() { 
+            /// BUNUN SAYESİNDE datatables 3 nolu hatayı vermiyor
+              if ($.fn.DataTable.isDataTable("#myListe")) {
+                    $('#myListe').DataTable().clear().destroy();
+                }
+            /// BUNUN SAYESİNDE datatables 3 nolu hatayı vermiyor   
+
+        $('#form-modal-listele').modal('show');
+        iTable = $('#myListe').DataTable({
+            "dom": 'Blfrtip',
+            "buttons": ['copy', 'excel', 'pdf', 'print'],
+            "order": [
+                [0, "desc"]
+            ],
+            "ajax": {
+                "url": '/onunhareketyukle',
+                "type": "POST",
+                "dataType": "json",
+                "dataSrc": "",
+                data: {kelime: kAd},
+            },
+            "columns": [{
+                    "data": "hareketlerid"
+                },
+                {
+                    "data": "islemtarihi",
+                    'render': function (data, type, full, meta) {
+                        if (type === 'display') {
+                            data = data.substr(0, 10);
+                            var gun = data.substr(8, 2);
+                            var ay = data.substr(5, 2);
+                            var yil = data.substr(0, 4);
+                            data = gun + "." + ay + "." + yil;
+                        }
+                        return data;
+                    },
+                    "autoWidth": true,
+                    "orderable": true,
+                },
+                {
+                    "data": "kitapadi"
+                },
+                {
+                    "data": "ogrenciadi"
+                },
+                {
+                    "data": "aciklama"
+                },
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+            }
+        });
+    }
+
+    function bil(dat) {
+        var knotext = dat;
+        $.ajax({
+            type: 'POST',
+            url: "./sil",
+            data: {
+                knotxt: knotext
+            },
+            success: function (data) {
+                tTable.ajax.reload();
+                $.notify('Kayıt Silindi', {
+                    globalPosition: 'top right',
+                    className: 'danger'
+                });
+            }
+        })
+    }
+   
+    $('#myTable tbody').on('click', 'tr', function () {
+        
+
+        console.log('ÇOK ŞÜKÜR');
+
+        var row = mTable.row(this).data(); 
+
+        araword = row.ogrencilerid; 
+        console.log('HAMD OLSUN');
+        console.log('+++>' +  araword);
+
+        ara(araword);
+    })
+</script>
+<script>
+    document.getElementById('cikis').style.visibility = 'visible';
+</script>

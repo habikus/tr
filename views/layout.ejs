@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANA SAYFA</title>
+
+  
+ 
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" /> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+  
+  <!--datatables.net-->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css" />
+  <link type="text/css" href="//cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+  <!--toastr-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+  <!--sweetalert-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+  <!--fontawesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  
+  <link rel="stylesheet" href="css/site.css">
+
+
+  <style>
+    /* Style the navigation bar */
+    .navbar {
+      width: 100%;
+      /*   
+     background-color: #555;
+     */
+      overflow: auto;
+    }
+
+    /* Navbar links */
+    .navbar a {
+      float: left;
+      text-align: left;
+      padding: 12px;
+      padding-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      letter-spacing: 0px;
+    }
+
+    /* Navbar links on mouse-over */
+    .navbar a:hover {
+      background-color: #000;
+    }
+
+    /* Current/active navbar link */
+    .active {
+      background-color: #04AA6D;
+    }
+
+    /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+    @media screen and (max-width: 500px) {
+      .navbar a {
+        float: none;
+        display: block;
+      }
+    }
+
+    footer {
+      position: fixed;
+      height: 40px;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #ust {
+      background-color: darkslategray;
+      color: ghostwhite;
+      height: 100%;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      font-size: 22px;
+      text-align: right;
+      padding: 0px;
+    }
+
+    .kose {
+      float: left;
+
+      font-size: 22px;
+    }
+  </style>
+
+</head>
+
+<body>
+ 
+  <div id="ust">
+    <div class="kose">
+      <div class="navbar">
+        <a class="active" href="/"><i class="fa fa-fw fa-home"></i>Ana Sayfa</a>
+        <a href="kitaplar"><i class="fa fa-book" aria-hidden="true"></i> Kitaplar</a>
+        <a href="ogrenciler"><i class="fas fa-users"></i>Öğrenciler</a>
+        <!-- <a href="sefkat"> ŞEFKATE GİDİVER  </a> -->
+        <a href="islemler"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>İşlemler</a>        
+        <a href="iletisim"><i class="fa fa-fw fa-envelope"></i>İletişim</a>
+        <a href="hakkimizda"><i class="far fa-address-card"></i>Hakkımızda</a>
+        <a href="kuran"><i class="fa fa-fw fa-book"></i>Kur'an</a>
+        <!-- <a href="giris" id="giris"><i class="fa fa-fw fa-user"></i>Giriş</a> -->
+        <a href="cikis" id="cikis"><i class="fa fa-fw fa-user"></i>Çıkış</a>
+        <h1>8</h1>
+      </div>
+    </div>
+    <div style="padding: 15px;">
+      <i class="fab fa-twitter-square"></i>
+      <i class="fab fa-facebook-square"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fas fa-car"></i>
+      <i class="fab fa-audible"></i></div>
+  </div>
+
+  <div style="width: 98%;">
+ 
+      <main>
+        <%- body%>
+      </main>
+   
+  </div>
+  <hr>
+
+   
+  <footer class="footer navbar-fixed-bottom">
+    <h4 style="color: aliceblue;"><span id="kim"> <%-kisi%></span> --> Şefkat Okulları Tüm Hakları saklıdır</h4>
+
+
+
+  </footer>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <!--toastr-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js">
+  </script>
+  <!--sweetalert-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"
+    integrity="sha512-efUTj3HdSPwWJ9gjfGR71X9cvsrthIA78/Fvd/IN+fttQVy7XWkOAXb295j8B3cmm/kFKVxjiNYzKw9IQJHIuQ=="
+    crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+  <script type="text/javascript" src="//cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+  <script src="//cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>
+
+  <!--serializeJSON-->
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/2.9.0/jquery.serializejson.min.js"></script>
+
+  <!-- Include jquery mark ( for highlighting text )-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/6.1.0/jquery.mark.min.js"></script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+
+
+    <script>
+     // document.getElementById('cikis').style.visibility = 'visible';
+    //  document.getElementById('giris').style.visibility = 'hidden';
+    //document.getElementById('kim').innerHTML=session.adSoySes;
+   //  document.getElementById('#kim').innerHTML=durum;
+    </script>
+</body>
+
+</html>

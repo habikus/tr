@@ -1,0 +1,735 @@
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    tr {
+        cursor: pointer;
+    }
+</style>
+<div class="container">
+    <h1>İŞLEMLER SAYFASI</h1>
+    <hr>
+    <div style="width: 120px;">
+        <input style="width: 100%;" onclick="yeni()" type="submit" class="btn btn-success" value="YENİ İŞLEM">
+    </div>
+    <hr>
+    <!-- Modal Popup İZLE Start -->
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        id="form-modal-izle">
+
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="padding:0px;">
+                <div style="background-color: rgb(88, 77, 138);">
+                    <div class="modal-header text-white">
+                        <h5 class="modal-title" id="modal-baslik-izle">İ Z L E</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"
+                        style="margin: 0px 1px 0px 1px; padding: 5px 20px 5px 20px;  background-color: rgb(19, 168, 86);">
+                        <!--====form section start====-->
+                        <div class="row" style="border:solid  rgb(220, 221, 228);">
+                            <div class="col-6"
+                                style="padding:25px; background-color:rgb(179, 150, 150); border:solid 1px rgb(255, 255, 255)">
+                                <div class="row">
+                                    <div class="col-sm-4 p-1">
+                                        <label class="control-label">HAREKET ID</label>
+                                    </div>
+                                    <div class="col-sm-8 p-1">
+                                        <input type="text" id="hareketid" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 p-1">
+                                        <label class="control-label">KİTAP ADI</label>
+                                    </div>
+                                    <div class="col-sm-8 p-1">
+                                        <input type="text" id="kitapid" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 p-1">
+                                        <label class="control-label">ÖĞRENCİ ADI</label>
+                                    </div>
+                                    <div class="col-sm-8 p-1">
+                                        <input type="text" id="ogrenciadi" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6"
+                                style="padding:25px; background-color: rgb(179, 150, 150); border:solid 1px  rgb(255, 255, 255)">
+                                <div class="row">
+                                    <div class="col-sm-4 p-1">
+                                        <label class="control-label">AÇIKLAMA</label>
+                                    </div>
+                                    <div class="col-sm-8 p-1">
+                                        <input type="text" id="aciklama" class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4 p-1">
+                                        <label class="control-label">İŞLEM TARİHİ</label>
+                                    </div>
+                                    <div class="col-sm-8 p-1">
+                                        <input type="date" id="islemtarihi" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--====form section start====-->
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="kapat">KAPAT</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup İZLE End -->
+    <!-- Modal Popup GÜNCELLE Start -->
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        id="form-modal-guncelle">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content" style="padding:0px;">
+                <div style="background-color: rgb(129, 197, 108);">
+                    <div class="modal-header text-white">
+                        <h5 class="modal-title" id="modal-baslik-guncelle">G Ü N C E L L E</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"
+                        style="margin: 0px 1px 0px 1px; padding: 5px 20px 5px 20px;  background-color: rgb(19, 168, 86);">
+                        <!--====form section start====-->
+                        <div class="row" style="border:solid  rgb(220, 221, 228);">
+                            <div class="col-6"
+                                style="padding:25px 0 25px 20px; background-color: rgb(162, 193, 211); border:solid 1px rgb(255, 255, 255)">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="control-label">HAREKET ID</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input style="width:150px" type="text" id="hareketidG" class="form-control"
+                                            value="" readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                <table style="width:100%; margin: 0px; padding:0px;">
+                                    <td colspan="2"> <label class="control-label" for="kitapidG">KİTAP ADI</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" id="kitapidG"
+                                                placeholder="Kitap adı giriniz" required readonly>
+                                        </td>
+                                        <td> <button onclick="seckitap()" class="btn btn-success">SEÇ</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"> <br><label class="control-label" for="ogrenciadiG">ÖĞRENCİ
+                                                ADI</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" id="ogrenciadiG"
+                                                placeholder="Öğrenci adı giriniz" required readonly>
+                                        </td>
+                                        <td> <button onclick="secogrenci()" class="btn btn-success">SEÇ</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6"
+                                style="padding:25px 25px 25px 20px; background-color: rgb(162, 193, 211); border:solid 1px rgb(255, 255, 255)">
+                                <div style="height: 29%;">
+
+                                </div>
+                                <table style="width:100%; margin: 0px;">
+                                    <tr>
+                                        <td> <label class="control-label" for="aciklamaG">AÇIKLAMA</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" id="aciklamaG" class="form-control" value="" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <label style="margin-top:25px;" class="control-label"
+                                                for="islemtarihiG">İŞLEM
+                                                TARİHİ</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="date" id="islemtarihiG" class="form-control" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!--====form section start====-->
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="guncelle" type="submit" onclick="guncelle()"
+                            class="btn btn-primary">GÜNCELLE</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="kapat">KAPAT</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup GÜNCELLE End -->
+    <!-- Modal Popup KAYDET Start -->
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        id="form-modal-kaydet">
+
+        <div class="modal-dialog modal-lg" role="document">
+
+            <div class="modal-content" style="padding:0px;">
+                <div style="background-color: rgb(129, 197, 108);">
+                    <div class="modal-header text-white">
+                        <h5 class="modal-title" id="modal-baslik-kaydet">K A Y D E T</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body"
+                        style="margin: 0px 1px 0px 1px; padding: 5px 20px 5px 20px;  background-color: rgb(19, 168, 86);">
+                        <!--====form section start====-->
+                        <div class="row" style="border:solid  rgb(220, 221, 228);">
+                            <div class="col-6"
+                                style="padding-top:10px; background-color: rgb(209, 211, 101); border:solid 1px  rgb(255, 255, 255)">
+                                <table style="width:100%; margin: 0px ;">
+                                    <tr>
+                                        <td colspan="2"> <label class="control-label" for="kitapidK">KİTAP ADI</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" id="kitapidK"
+                                                placeholder="Kitap adı giriniz" required>
+                                        </td>
+                                        <td> <button onclick="seckitap()" class="btn btn-success">SEÇ</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"> <br><label class="control-label" for="ogrenciadiK">ÖĞRENCİ
+                                                ADI</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control" id="ogrenciadiK"
+                                                placeholder="Öğrenci adı giriniz" required>
+                                        </td>
+                                        <td> <button onclick="secogrenci()" class="btn btn-success">SEÇ</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="col-6"
+                                style="padding:25px; background-color: rgb(209, 211, 101); border:solid 1px rgb(255, 255, 255)">
+                                <table style="width:100%; margin: 0px ;">
+                                    <tr>
+                                        <td> <label class="control-label" for="aciklamaK">AÇIKLAMA</label></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" id="aciklamaK"
+                                                placeholder="Açıklama giriniz" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <br><label class="control-label" for="islemtarihiK">İŞLEM TARİHİ</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="date" class="form-control" id="islemtarihiK"
+                                                placeholder="İşlem tarihi giriniz" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!--====form section start====-->
+                    </div>
+
+                    <div class="modal-footer">
+                        <button id="kaydeyle" type="submit" onclick="kaydet()" class="btn btn-primary">KAYDET</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="kapat">KAPAT</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup KAYDET End -->
+    <!-- Modal Popup SEÇMEK İÇİN KİTAP LİSTELEME Start -->
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        id="KitapListModal">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content" style="padding:20px;">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">KİTAP LİSTESİ </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="KitapTablo" class="table table-bordered table-hover table-striped dataTable w-95">
+                        <thead>
+                            <tr>
+                                <th>Kodu</th>
+                                <th>Kitap Adı</th>
+                                <th>Yazarı</th>
+                                <th>Yayınevi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer bg-info text-white">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">KAPAT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup SEÇMEK İÇİN KİTAP LİSTELEME End -->
+    <!-- Modal Popup SEÇMEK İÇİN ÖĞRENCİ LİSTELEME Start -->
+    <div class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+        id="OgrenciListModal">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content" style="padding:20px;">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title">ÖĞRENCİ LİSTESİ </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="OgrenciTablo" class="table table-bordered table-hover table-striped dataTable w-95">
+                        <thead>
+                            <tr>
+                                <th>Nosu</th>
+                                <th>Öğrenci Adı</th>
+                                <th>Sınıfı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer bg-info text-white">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">KAPAT</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Popup SEÇMEK İÇİN ÖĞRENCİ LİSTELEME End -->
+
+    <table id="myTable" class="display" style="width:100%">
+        <thead style="background-color: rgb(82, 156, 156);color: white;">
+            <tr>
+                <th>No</th>
+                <th>Tarih</th>
+                <th>Kitap Adı</th>
+                <th>Öğrenci Adı</th>
+                <th>Açıklama</th>
+                <th> </th>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script>
+    var tTable, kTable, oTable;
+    var kId;
+    //////////////////////////////////
+    $(document).ready(function () {
+        tTable = $('#myTable').DataTable({
+            "dom": 'Blfrtip',
+            "buttons": ['copy', 'excel', 'pdf', 'print'],
+            "order": [
+                [0, "desc"]
+            ],
+            "ajax": {
+                "url": '/hareketyukle',
+                "type": "GET",
+                dataType: "json",
+                "dataSrc": ""
+            },
+            "columns": [{
+                    "data": "hareketlerid"
+                },
+                {
+                    "data": "islemtarihi",
+                    'render': function (data, type, full, meta) {
+                        if (type === 'display') {
+                            data = data.substr(0, 10);
+                            var gun = data.substr(8, 2);
+                            var ay = data.substr(5, 2);
+                            var yil = data.substr(0, 4);
+                            data = gun + "." + ay + "." + yil;
+                        }
+                        return data;
+                    },
+                    "autoWidth": true,
+                    "orderable": true,
+                },
+                {
+                    "data": "kitapadi"
+                },
+                {
+                    "data": "ogrenciadi"
+                },
+                {
+                    "data": "aciklama"
+                },
+                {
+                    "data": "hareketlerid",
+                    "render": function (data) {
+                        var btnDetay =
+                            "<a class='btn btn-info btn-sm text-white' onclick=izle('" +
+                            data + "')> <i class='fas fa-info-circle'></i></a>";
+                        var btnEdit =
+                            "<a class='btn btn-success btn-sm text-white' onclick=duzenle('" +
+                            data +
+                            "')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                        var btnDelete =
+                            "<a class='btn btn-danger btn-sm text-white' onclick=silsor('" +
+                            data + "')><i class='fa fa-trash'></i></a>";
+                        return btnDetay + " | " + btnEdit + " | " + btnDelete;
+                    },
+                    //  "orderable": false,//
+                    "searchable": false,
+                    "width": "145px"
+                },
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+            }
+        });
+    });
+
+    function seckitap() {
+        if ($.fn.DataTable.isDataTable("#KitapTablo")) {
+            $('#KitapTablo').DataTable().clear().destroy();
+        }
+        $('#KitapListModal').modal('show');
+        // KİTAP LİSTESİNİ YÜKLE
+        kTable = $("#KitapTablo").DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "responsive": true,
+            "autoWidth": false,
+            //  "processing": true,
+            "order": [
+                [1, "asc"]
+            ],
+            "ajax": {
+                "url": '/kitapyukle',
+                "type": "GET",
+                "datatype": "json",
+                "dataSrc": "",
+            },
+            "columnDefs": [{
+                "visible": false,
+                "targets": 0
+            }],
+            columns: [{
+                    "data": "kitaplarid"
+                },
+                {
+                    "data": "kitapkodu"
+                },
+                {
+                    "data": "kitapadi"
+                },
+                {
+                    "data": "yazar"
+                },
+                {
+                    "data": "yayinevi"
+                }
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+            }
+        });
+        // KİTAP LİSTESİNİ YÜKLE
+    }
+
+    function secogrenci() {
+        if ($.fn.DataTable.isDataTable("#OgrenciTablo")) {
+            $('#OgrenciTablo').DataTable().clear().destroy();
+        }
+        $('#OgrenciListModal').modal('show');
+        // ÖĞRENCİ LİSTESİNİ YÜKLE
+        oTable = $("#OgrenciTablo").DataTable({
+            "paging": true,
+            "pageLength": 10,
+            "responsive": true,
+            "autoWidth": false,
+            //  "processing": true,
+            "order": [
+                [1, "asc"]
+            ],
+            "ajax": {
+                "url": '/ogrenciyukle',
+                "type": "GET",
+                "datatype": "json",
+                "dataSrc": "",
+            },
+            columns: [{
+                    "data": "ogrencino"
+                },
+                {
+                    "data": "ogrenciadi"
+                },
+                {
+                    "data": "sinifi"
+                },
+            ],
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+            }
+        });
+        // ÖĞRENCİ LİSTESİNİ YÜKLE
+    }
+
+    function yeni() {
+        temizle();
+        $('#form-modal-kaydet').modal('show');
+        document.getElementById("modal-baslik-kaydet").innerText = "YENİ KAYIT EKLEME"
+        // GÜNÜN TARİHİ        
+        var date = new Date();
+        var currentDate = date.toISOString().substring(0, 10);
+        document.getElementById('islemtarihiK').value = currentDate;
+        //+ var tarih_goster=new Date();
+        //+ var tarih = tarih_goster.toLocaleString().slice(0, 10); 
+        // GÜNÜN TARİHİ
+
+        // İSİM LİSTESİNİ YÜKLE
+        /*  $.ajax({
+              type: 'GET',
+              url: "./ogrenciyukle",
+              success: function (data) {
+                  data.forEach(function (element) {
+                      var option = document.createElement("option");
+                      option.text = element.ogrenciadi;
+                      ogrenciadiK.add(option);
+                  });
+              },
+          });*/
+        // İSİM LİSTESİNİ YÜKLE
+    }
+
+    function temizle() {
+        //  document.getElementById("aratext").value = "";
+        document.getElementById("aciklamaK").value = "";
+        document.getElementById("islemtarihiK").value = "";
+        document.getElementById("kitapidK").value = "";
+        document.getElementById("ogrenciadiK").value = "";
+    }
+
+    function izle(data) {
+        $('#form-modal-izle').modal('show');
+        //  document.getElementById('izle').style.visibility = 'hidden';
+        document.getElementById("modal-baslik-izle").innerText = "KAYIT İNCELEME"
+        document.getElementById("hareketid").value = data; //linkteki data row yani
+        $.ajax({
+            type: 'POST',
+            url: "./getirhareket",
+            data: {
+                kelime: data
+            },
+            success: function (data) {
+                // temizle();       
+                document.getElementById("hareketid").value = data[0].hareketlerid;
+                document.getElementById("aciklama").value = data[0].aciklama;
+
+                var tarih = data[0].islemtarihi.slice(0, 10);
+                document.getElementById("islemtarihi").value = tarih;
+
+
+                //document.getElementById("islemtarihi").value = data[0].islemtarihi;
+
+                document.getElementById("kitapid").value = data[0].kitapadi;
+                document.getElementById("ogrenciadi").value = data[0].ogrenciadi;
+            },
+        });
+    }
+
+    function duzenle(data) {
+        $('#form-modal-guncelle').modal('show');
+        //document.getElementById('guncelle').style.visibility = 'visible';
+        document.getElementById("modal-baslik-guncelle").innerText = "KAYIT GÜNCELLEME"
+        document.getElementById("hareketidG").value = data; //linkteki data row yani
+
+        $.ajax({
+            type: 'POST',
+            url: "./getirhareket",
+            data: {
+                kelime: data
+            },
+            success: function (data) {
+                // temizle();       
+                //  document.getElementById("hareketidG").value = data[0].hareketlerid; // yukarda var
+                document.getElementById("aciklamaG").value = data[0].aciklama;
+
+                var tarih = data[0].islemtarihi.slice(0, 10);
+                document.getElementById('islemtarihiG').value = tarih;
+
+                document.getElementById("kitapidG").value = data[0].kitapadi;
+                kId = data[0].kitaplarid;
+                document.getElementById("ogrenciadiG").value = data[0].ogrenciadi;
+            },
+        });
+    }
+
+    function silsor(data) {
+        var agree = confirm("BU KAYDI SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?\nBu işlem geri alınamaz!");
+        if (agree) {
+            //  return true;
+            sil(data);
+        } else {
+            return false;
+        }
+    }
+
+    function sil(data) {
+        $.ajax({
+            type: 'POST',
+            url: "./silhareket",
+            data: {
+                kelime: data
+            },
+            success: function (data) {
+                $.notify('Kayıt Silindi', {
+                    globalPosition: 'top right',
+                    className: 'danger'
+                });
+                $('#form-modal-kaydet').modal('hide'); // SİL BÖLÜMÜNDE İSE BUNU YAPMADAN DATATABLE REFRESH OLMUYOR
+                $('#myTable').DataTable().ajax.reload();
+            }
+        })
+    }
+
+    function guncelle(data) {
+        var idtext = document.getElementById("hareketidG").value
+        var aciklamatext = document.getElementById("aciklamaG").value;
+        var tarihtext = document.getElementById("islemtarihiG").value;
+        //var kitapidtext = document.getElementById("kitapidG").value;
+        var kitapidtext = kId;
+        var ogrenciaditext = document.getElementById("ogrenciadiG").value;
+        console.log(kId)
+        $.ajax({
+            type: 'POST',
+            url: "./guncellehareket",
+            data: {
+                idtxt: idtext,
+                aciklamatxt: aciklamatext,
+                tarihtxt: tarihtext,
+                kitapidtxt: kitapidtext,
+                ogrenciaditxt: ogrenciaditext
+            },
+            success: function (data) {
+                $.notify('Kayıt Güncellendi', {
+                    globalPosition: 'top right',
+                    className: 'success'
+                });
+                $('#form-modal-guncelle').modal('hide');
+                $('#myTable').DataTable().ajax.reload();
+            }
+        })
+    }
+
+    function kaydet() {
+        // var idtext = document.getElementById("hareketid").value
+        var aciklamatext = document.getElementById("aciklamaK").value;
+        var tarihtext = document.getElementById("islemtarihiK").value;
+        var kitapidtext = kId; //document.getElementById("kitapidK").value; // NERDEN NE 
+        var ogrenciaditext = document.getElementById("ogrenciadiK").value;
+        $.ajax({
+            type: 'POST',
+            url: "./kaydethareket",
+            data: {
+                //   idtxt: idtext,
+                aciklamatxt: aciklamatext,
+                tarihtxt: tarihtext,
+                kitapidtxt: kId, // kitapidtext,
+                ogrenciaditxt: ogrenciaditext
+            },
+            success: function (data) {
+                $.notify('İşlem Kaydedildi', {
+                    globalPosition: 'top right',
+                    className: 'success'
+                });
+                $('#form-modal-kaydet').modal('hide');
+                $('#myTable').DataTable().ajax.reload();
+            }
+        })
+    }
+
+    $('#myTable tbody').on('dblclick', 'tr', function () {
+        var data = tTable.row(this).data();
+        // alert(row.kitaplarid);
+        $('#form-modal-izle').modal('show');
+        document.getElementById("modal-baslik-izle").innerText = "KAYIT İNCELEME"
+        document.getElementById("hareketid").value = data; //linkteki data row yani
+        $.ajax({
+            type: 'POST',
+            url: "./getirhareket",
+            data: {
+                kelime: data.hareketlerid
+            },
+            success: function (data) {
+                // temizle();       
+                document.getElementById("hareketid").value = data[0].hareketlerid;
+                document.getElementById("aciklama").value = data[0].aciklama;
+
+                var tarih = data[0].islemtarihi.slice(0, 10);
+                document.getElementById("islemtarihi").value = tarih;
+
+
+                // alert( date.setDate(tarih.getDate() + 1))
+
+
+
+
+                //  var tarih = data[0].islemtarihi.slice(0, 10);
+                /* var tarih_goster=new Date();
+                  var tarih = tarih_goster.toLocaleString().slice(0, 10);
+                  document.getElementById('islemtarihi').value = tarih;*/
+
+
+
+
+                document.getElementById("kitapid").value = data[0].kitapadi;
+                document.getElementById("ogrenciadi").value = data[0].ogrenciadi;
+            },
+        });
+    })
+
+    $('#KitapTablo tbody').on('dblclick', 'tr', function () {
+        var data = kTable.row(this).data();
+        $('#KitapListModal').modal('hide');
+        console.log(data.kitapadi + " " + data.kitaplarid)
+        document.getElementById("kitapidK").value = data
+            .kitapadi; // KAYIT VE GÜNCELLE İKİSİ DE BURAYI KULLANIYOR
+        document.getElementById("kitapidG").value = data
+            .kitapadi; // KAYIT VE GÜNCELLE İKİSİ DE BURAYI KULLANIYOR
+        kId = data.kitaplarid;
+    })
+
+    $('#OgrenciTablo tbody').on('dblclick', 'tr', function () {
+        var data = oTable.row(this).data();
+        $('#OgrenciListModal').modal('hide');
+        console.log(data.ogrenciadi)
+        document.getElementById("ogrenciadiK").value = data
+            .ogrenciadi; // KAYIT VE GÜNCELLE İKİSİ DE BURAYI KULLANIYOR
+        document.getElementById("ogrenciadiG").value = data
+            .ogrenciadi; // KAYIT VE GÜNCELLE İKİSİ DE BURAYI KULLANIYOR
+    })
+</script>

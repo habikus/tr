@@ -1,0 +1,132 @@
+ <style>
+    /* The Modal (background) */
+     .modal {
+         display: none;
+         /* Hidden by default */
+         position: fixed;
+         /* Stay in place */
+         z-index: 1;
+         /* Sit on top */
+         left: 0;
+         top: 0;
+         width: 100%;
+         /* Full width */
+         height: 100%;
+         /* Full height */
+         overflow: auto;
+         /* Enable scroll if needed */
+         background-color: rgb(0, 0, 0);
+         /* Fallback color */
+         background-color: rgba(0, 0, 0, 0.4);
+         /* Black w/ opacity */
+         padding-top: 60px;
+     }
+
+     /* Modal Content/Box */
+     .modal-content {
+         background-color: #fefefe;
+         margin: 0% auto 10% auto;
+         /* 5% from the top, 15% from the bottom and centered */
+         border: 1px solid #888;
+         width: 100%;
+         /* Could be more or less, depending on screen size */
+     }
+
+     /* The Close Button (x) */
+     .close {
+         position: absolute;
+         right: 25px;
+         top: 0;
+         color: #000;
+         font-size: 35px;
+         font-weight: bold;
+     }
+
+     .close:hover,
+     .close:focus {
+         color: red;
+         cursor: pointer;
+     }
+
+     /* Add Zoom Animation */
+     .animate {
+         -webkit-animation: animatezoom 0.6s;
+         animation: animatezoom 0.6s
+     }
+
+     @-webkit-keyframes animatezoom {
+         from {
+             -webkit-transform: scale(0)
+         }
+
+         to {
+             -webkit-transform: scale(1)
+         }
+     }
+
+     @keyframes animatezoom {
+         from {
+             transform: scale(0)
+         }
+
+         to {
+             transform: scale(1)
+         }
+     }
+
+     /* Change styles for span and cancel button on extra small screens */
+     @media screen and (max-width: 300px) {
+         span.psw {
+             display: block;
+             float: none;
+         }
+
+         .cancelbtn {
+             width: 100%;
+         }
+     }
+ </style>
+
+ 
+     <div id="id01" class="modal">
+         <div class="container">
+             <div class="d-flex justify-content-center h-100">
+                 <div class="card">
+                     <div class="card-header">
+                         <h3>Giriş</h3>
+
+                     </div>
+
+                     <div class="card-body">
+                         <form class="modal-content animate" action="giris" method="POST">
+
+                             <div class="input-group form-group">
+                                 <div class="input-group-prepend">
+                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                 </div>
+                                 <input type="text" class="form-control" name="username" placeholder="Kullanıcı Adı">
+
+                             </div>
+                             <div class="input-group form-group">
+                                 <div class="input-group-prepend">
+                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                 </div>
+                                 <input type="password" class="form-control" name="password" placeholder="Şifre">
+                             </div>
+
+                             <div class="card-footer">
+                                 <div>
+                                     <input type="submit" class="btn btn-primary" style="width: 100%;" value="Giriş">
+                                     <!--   <a href="#" class="btn btn-success buttongir">Kaytı Ol</a>-->
+                                 </div>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <script>
+         document.getElementById('id01').style.display = 'block'
+         document.getElementById('cikis').style.visibility = 'hidden';
+     </script>

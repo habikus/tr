@@ -1,0 +1,437 @@
+<style>
+    * {
+        box-sizing: border-box;
+        /*PADDİNG VE BORDER İÇTEN YER */
+    }
+
+    tr {
+        cursor: pointer;
+    }
+
+    .labeltr {
+        font-weight: 600;
+        font-size: 16px;
+        color: rgb(20, 55, 95);
+    }
+
+    .orta {
+        margin: auto;
+    }
+</style>
+
+<div class="container">
+    <div class="row" style="border: darkolivegreen 2px solid;     box-shadow: 0 2px 8px 2px rgb(68, 45, 45);">
+        <div class="col-4" style="background-color: rgb(221, 217, 160); margin-left: 0px;padding:20px;">
+            <h2 style="margin-bottom: 15px;">AYRINTILI KİTAP BİLGİLERİ</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <!--  <input type="text" id="id" style="visibility: hidden" value="">   -->
+                    <label class="control-label labeltr">KİTAP KODU</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="kitapkodu" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">KİTAP ADI</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="kitapadi" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">YAZAR</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="yazar" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">YAYIN EVİ</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="yayinevi" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">SAYFA SAYISI</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="sayfa" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">KİTAP TÜRÜ</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="kitapturu" class="form-control" value="" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 p-1">
+                    <label class="control-label labeltr">AÇIKLAMA</label>
+                </div>
+                <div class="col-sm-8 p-1">
+                    <input type="text" id="aciklama" class="form-control" value="" required>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-4 p-1 orta">
+                    <button style="width: 100%;" onclick="yeni()" class="btn btn-primary"><i
+                            class="far fa-file-alt"></i>YENİ</button>
+                </div>
+                <div class="col-4  p-1 orta">
+                    <button style="width: 100%;" onclick="kaydetsen()" class="btn btn-success"><i
+                            class="far fa-save"></i>KAYDET</button>
+                </div>
+                <div class="col-4 p-1 orta">
+                    <button style="width: 100%;" onclick="silersen()" class="btn btn-danger"> <i
+                            class="far fa-trash-alt"></i>SİL</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-8" style="background-color: aliceblue; padding:20px;">
+            <h1>KİTAP LİSTESİ</h1>
+            <hr>
+            <table id="myTable" class="tablem table table-bordered table-hover table-striped dataTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Kodu</th>
+                        <th>Kitap Adı</th>
+                        <th>Yazarı</th>
+                        <th>Yayınevi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        var tTable;
+        var araword;
+        var kId;
+        $(document).ready(function () {
+            kId=0;
+            temizle();            
+            tTable = $("#myTable").DataTable({
+                "paging": true,
+                "pageLength": 5,
+                "responsive": true,
+                "autoWidth": false,
+                //  "processing": true,
+                "order": [
+                    [1, "asc"]
+                ],
+                "ajax": {
+                    "url": '/kitapyukle',
+                    "type": "GET",
+                    "datatype": "json",
+                    "dataSrc": "",
+                },
+              //  "columnDefs": [{"visible": false,"targets": 0}],
+                columns: [{
+                        "data": "kitaplarid"
+                    }, {
+                        "data": "kitapkodu"
+                    },
+
+                    {
+                        "data": "kitapadi"
+                    },
+                    {
+                        "data": "yazar"
+                    },
+                    {
+                        "data": "yayinevi"
+                    }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+                }
+
+            });
+        });        
+
+        function yeni() {
+            temizle();
+        }
+
+        function yeniPopup() {
+            //  araword = document.getElementById("aratext").value;
+            temizle();
+            //  ara(araword);
+            $('#form-modal').modal('show');
+            document.getElementById("modal-baslik").innerText = "YENİ KAYIT EKLEME"
+        }
+
+        function arasen() {
+            araword = kId;
+            temizle();
+            ara(araword);
+        }
+
+        function ara(araword) {
+            $.ajax({
+                type: 'POST',
+                url: "./getir",
+                data: {
+                    kelime: araword
+                },
+                success: function (data) {
+                    if (data[0].durum == "yoktur") {
+                        temizle();
+                        //document.getElementById("sonuc").innerHTML = "ARADIĞINIZ KAYIT BULUNAMAMIŞTIR";
+                        //$("#tablo").hide();
+                    } else {
+                        kId = data[0].kitaplarid;
+                        document.getElementById("kitapkodu").value = data[0].kitapkodu;
+                        document.getElementById("kitapadi").value = data[0].kitapadi;
+                        document.getElementById("yazar").value = data[0].yazar;
+                        document.getElementById("sayfa").value = data[0].sayfa;
+                        document.getElementById("kitapturu").value = data[0].kitapturu;
+                        document.getElementById("aciklama").value = data[0].aciklama;
+                        document.getElementById("yayinevi").value = data[0].yayinevi;
+                    }
+                },
+            });
+        }
+
+        function suzsen(url, title) {
+            if ($.fn.DataTable.isDataTable("#ekTable")) {
+                $('#ekTable').DataTable().clear().destroy();
+            }
+
+            var araword = document.getElementById("aratext").value;
+            var n = araword.length;
+            if (n < 3) {
+                alert("En az 3 karakter girmelisiniz!");
+                return;
+            };
+            //************************* 
+            temizle();
+            $.ajax({
+                type: 'POST',
+                url: "./suz",
+                data: {
+                    kelime: araword
+                },
+                success: function (data) {
+                    //  document.getElementById("id").value = data[0].kitaplarid;
+                    document.getElementById("kitapkodu").value = data[0].kitapkodu;
+                    document.getElementById("kitapadi").value = data[0].kitapadi;
+                    document.getElementById("yazar").value = data[0].yazar;
+                    document.getElementById("sayfa").value = data[0].sayfa;
+                    document.getElementById("kitapturu").value = data[0].kitapturu;
+                    document.getElementById("aciklama").value = data[0].aciklama;
+                    document.getElementById("yayinevi").value = data[0].yayinevi;
+
+                    $("#tablo").show();
+                    tTable = $('#ekTable').DataTable({
+                        "paging": true,
+                        "pageLength": 10,
+                        "responsive": true,
+                        "autoWidth": false,
+                        "order": [
+                            [1, "asc"]
+                        ],
+                        "ajax": {
+                            "url": './filitre',
+                            "type": "POST",
+                            "datatype": "json",
+                            "dataSrc": "",
+                            data: {
+                                kelime: araword
+                            },
+                        },
+                        columns: [{
+                                "data": "kitaplarid"
+                            }, {
+                                "data": "kitapkodu"
+                            },
+                            {
+                                "data": "kitapadi"
+                            },
+                            {
+                                "data": "yazar"
+                            },
+                            {
+                                "data": "yayinevi"
+                            },
+                        ],
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+                        }
+                    });
+                }
+            });
+        } //**************************    
+
+        $('#myTable tbody').on('click', 'tr', function () {
+            var row = tTable.row(this).data();
+            araword = row.kitaplarid;
+            // alert(row.kitapkodu + '    ' + row.kitapadi);         // ELHAMDÜ LİLLAH      
+            ara(araword);
+        })
+
+        function silersen(url, title) {
+
+            if (document.getElementById("kitapkodu").value == "" || document.getElementById("kitapadi").value == "") {
+                alert("Silinecek kaydı seçmelisiniz!");
+                return false;
+            }
+
+            var agree = confirm("BU KAYDI SİLMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?\nBu işlem geri alınamaz!");
+            if (agree) {
+                //  DEVAM
+            } else {
+                return false;
+            }
+
+            //var idtext = document.getElementById("id").value;
+            var idtext = kId;
+            $.ajax({
+                type: 'POST',
+                url: "./sil",
+                data: {
+                    idtxt: idtext
+                },
+                success: function (data) {
+                    $.notify('Kayıt Silindi', {
+                        globalPosition: 'top right',
+                        className: 'danger'
+                    });
+                    //  tTable.ajax.reload(); // JSON OLMAYINCA GÜNCELLEMİYOR
+                    $('#myTable').DataTable().ajax.reload();
+                    temizle();
+                }
+            })
+        }
+
+        function temizle() {
+            kId=0;
+            document.getElementById("kitapadi").value = "";
+            document.getElementById("yazar").value = "";
+            document.getElementById("yayinevi").value = "";
+            document.getElementById("kitapkodu").value = "";
+            document.getElementById("aciklama").value = "";
+            document.getElementById("kitapturu").value = "";
+            document.getElementById("sayfa").value = "";
+          }
+
+        function kaydetsen(url, title) {
+
+            if (document.getElementById("kitapkodu").value == "" || document.getElementById("kitapadi").value == "") {
+                alert("Kitap kodu veya kitap adı alanları boş geçilemez!");
+                return false;
+            }
+            var agree = confirm("KAYDETMEK İSTEDİĞİNİZDEN EMİN MİSİNİZ?");
+            if (agree) {
+                //  DEVAM
+            } else {
+                return false;
+            }
+            var idtext = kId;
+            var kodutext = document.getElementById("kitapkodu").value;
+            var kitapaditext = document.getElementById("kitapadi").value;
+            var yazartext = document.getElementById("yazar").value;
+            var sayfatext = document.getElementById("sayfa").value;
+            var turutext = document.getElementById("kitapturu").value;
+            var aciklamatext = document.getElementById("aciklama").value;
+            var yayinevitext = document.getElementById("yayinevi").value;
+            // var ozettext = document.getElementById("ozet").value;  
+            $.ajax({
+                type: 'POST',
+                url: "./kaydet",
+                data: {
+                    idtxt: idtext,
+                    kodutxt: kodutext,
+                    kitapaditxt: kitapaditext,
+                    yazartxt: yazartext,
+                    sayfatxt: sayfatext,
+                    turutxt: turutext,
+                    aciklamatxt: aciklamatext,
+                    yayinevitxt: yayinevitext
+                },
+                success: function (data) {
+
+                    $.notify('Kayıt Edildi', {
+                        globalPosition: 'top right',
+                        className: 'success'
+                    });
+                    // tTable.ajax.reload(); // JSON OLMAYAN TABLO HATA VERİYORDU
+                    $('#myTable').DataTable().ajax.reload();
+                }
+            })
+        }
+
+        function guncellesen(url, title) {
+            var idtext = kId;
+            var kodutext = document.getElementById("kitapkodu").value;
+            var kitapaditext = document.getElementById("kitapadi").value;
+            var yazartext = document.getElementById("yazar").value;
+            var sayfatext = document.getElementById("sayfa").value;
+            var turutext = document.getElementById("kitapturu").value;
+            var aciklamatext = document.getElementById("aciklama").value;
+            var yayinevitext = document.getElementById("yayinevi").value;
+            $.ajax({
+                type: 'POST',
+                url: "./guncelle",
+                data: {
+                    idtxt: idtext,
+                    kodutxt: kodutext,
+                    kitapaditxt: kitapaditext,
+                    yazartxt: yazartext,
+                    sayfatxt: sayfatext,
+                    turutxt: turutext,
+                    aciklamatxt: aciklamatext,
+                    yayinevitxt: yayinevitext
+                },
+                success: function (data) {
+
+                    $.notify('Kayıt Güncellendi', {
+                        globalPosition: 'top right',
+                        className: 'success'
+                    });
+                    //  tTable.ajax.reload(); JSON OLMAYINCA HATA VERDİ
+                }
+            })
+        }
+
+        function bil(dat) {
+            var knotext = dat;
+            $.ajax({
+                type: 'POST',
+                url: "./sil",
+                data: {
+                    knotxt: knotext
+                },
+                success: function (data) {
+                    tTable.ajax.reload();
+                    $.notify('Kayıt Silindi', {
+                        globalPosition: 'top right',
+                        className: 'danger'
+                    });
+                }
+            })
+        }
+
+        function modalkaydet() {
+            kaydetsen();
+            $('#form-modal').modal('hide');
+        }
+    </script>
+    <script>
+        document.getElementById('cikis').style.visibility = 'visible';
+    </script>
+    <script src="js/modalForm.js"></script>
