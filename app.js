@@ -7,7 +7,12 @@ var path = require('path');
 var compression = require('compression');
 
 app.use(compression());
-app.set('port', (process.env.PORT || 5500));
+
+//app.set('port', (process.env.PORT || 5500));
+
+const PORT = process.env.PORT || 3000;
+
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,7 +27,7 @@ function baglan() {
     con = mysql.createConnection({
 
        // host: ENV['89.163.146.147'],
-         host: "89.163.146.147",
+        host: "89.163.146.147",
 
         user: "yilsoft_kutup",
 
@@ -55,8 +60,12 @@ app.get('/', (req, res) => {
 
  app.listen(port, () => {
    console.log("Örnek uygulama dinleniyor inşallah." + port);
- })*/
+ })
 
  app.listen(app.get('port'), function() {
     console.log('Elhamdülillah', app.get('port'));
-});
+});*/
+
+app.listen(PORT, () => {
+    console.log(`HAMDOLSUN ${PORT}.`);
+  })
